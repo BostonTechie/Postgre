@@ -35,7 +35,7 @@ const client = new dbClient({
     database: (app.get("database"))
 })
 
-//connect your client returns a promise
+//connect your database postgres client returns a promise and some results  m
 client.connect()
 .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
 .then(() => client.query("SELECT * FROM students;"))
