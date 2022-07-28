@@ -37,7 +37,7 @@ const client = new dbClient({
 
 //connect your client returns a promise
 client.connect()
-.then(()=> console.log(`✅ connect to Postgres: ${app.get("database")} 🌟`))
+.then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
 .catch(e => console.log("here is your error ", e))
 .finally(() => client.end())
 
