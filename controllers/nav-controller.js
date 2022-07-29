@@ -3,7 +3,7 @@ const router = express.Router()
 const bodyParser = require("body-parser")
 
 // The home route will navigate to the home.ejs
-router.get('/home', (req, res) => { 
+router.get('/', (req, res) => { 
     res.render('home')
   })
 
