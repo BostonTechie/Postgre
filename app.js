@@ -47,16 +47,14 @@ app.set('view engine', 'ejs')
 // this is an example of dot chaining
 client.connect()
   .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")}, at host ${app.get("host")} 🌟`))
-  .then(() => client.query("SELECT * FROM students;"))
+  .then(() => client.query("SELECT * FROM crypto LIMIT 5;"))
   .then((results => console.table(results.rows)))
 
   //insert into your database
   //can onyl be inserted once because id is primary key, also SSN is unique (column one)
   //.then(() => client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["7","insert1","insert2","insert3","insert4","45"]))
 
-  //select ftom an array
-  .then(() => client.query("SELECT * FROM students where first_name = $1", ["Andy"]))
-  .then((results => console.table(results.rows)))
+
   
   .catch(e => console.log("here is your error ", e))
 .finally(() => client.end(console.log('client disconnected')))
