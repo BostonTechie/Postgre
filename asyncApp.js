@@ -3,7 +3,7 @@
 // async version no ejs or browser view function, console only
 
 // set app to use express ejs views
-const { Client } = require("pg");
+const { Client } = require("pg")
 
 //---- set up of the Postgres database client
 // pg has a bunch of stuff just need client
@@ -17,23 +17,26 @@ const client = new Client({
   database: "generalassembly",
 });
 
-executeAsync();
+executeAsync()
+
 //connect your database postgres client returns a promise and some results  $database defined above
 async function executeAsync() {
   try{
-    await client.connect();
-    console.log(`✅ connected to Postgres: 🌟`);
-    const results = await client.query("SELECT * FROM students;");
-    console.table(results.rows);
+    await client.connect()
+    console.log(`✅ connected to Postgres: 🌟`)
+    //cna only insert once unless you chance id and  SSN
+    //const inputthis = await client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["122","","","","","4546"])
+    const {rows} = await client.query("SELECT * FROM students;")
+    console.table(rows)
   }
   
   catch (e){
-    console.log('here is your async error: ', e)
+    console.log(`here is your async error: ${e}`)
   }
 
   finally {
-    await client.end();
-    console.log("client disconnected");
+    await client.end()
+    console.log("client disconnected")
   }
 
 }
