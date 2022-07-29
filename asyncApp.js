@@ -1,6 +1,7 @@
 //Dev by Andrew Urquhart 7/29/2022
 //slack/discord - Drewlongshot
 // async version no ejs or browser view function, console only
+//https://www.youtube.com/watch?v=ufdHsFClAk0
 
 // set app to use express ejs views
 const { Client } = require("pg")
