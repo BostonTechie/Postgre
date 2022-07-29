@@ -45,17 +45,21 @@ app.set('view engine', 'ejs')
 //connect your database postgres client returns a promise and some results  $database defined above
 
 client.connect()
-.then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
-.then(() => client.query("SELECT * FROM students;"))
-.then((results => console.table(results.rows)))
-.catch(e => console.log("here is your error ", e))
-.finally(() => client.end())
+  .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
+  .then(() => client.query("SELECT * FROM students;"))
+  .then((results => console.table(results.rows)))
+  
+  .then(() => client.query("SELECT * FROM students where first_name = $1", ["Andy"]))
+  .then((results => console.table(results.rows)))
+  
+  .catch(e => console.log("here is your error ", e))
+  .finally(() => client.end())
 
 
 // redirect user to home page ---------------
 app.get('/', (req, res) => {
-    res.redirect('/')
-  })
+  res.redirect('/')
+})
 
 // Controllers ---------------
 // the "home" page in this section is the index
