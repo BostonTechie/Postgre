@@ -43,7 +43,7 @@ app.set('view engine', 'ejs')
 
 
 //connect your database postgres client returns a promise and some results  $database defined above
-
+// this is an example of dot chaining
 client.connect()
   .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
   .then(() => client.query("SELECT * FROM students;"))
@@ -58,7 +58,7 @@ client.connect()
   .then((results => console.table(results.rows)))
   
   .catch(e => console.log("here is your error ", e))
-.finally(() => client.end())
+.finally(() => client.end(console.log('client disconnected')))
 
 
 // redirect user to home page ---------------
