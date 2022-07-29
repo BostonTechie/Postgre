@@ -1,27 +1,17 @@
-// Config postgres client connect
+//Dev by Andrew Urquhart 7/29/2022
+//slack/discord - Drewlongshot
 
-require('dotenv').config()
 
-
-// Config const and require---------------
+// set app to use express ejs views
 const express = require('express')
-const Sequelize = require('sequelize')
 const app = express()
-const methodOverride = require('method-override')
-const expressEjsLayout = require('express-ejs-layouts')
-const navController = require('./controllers/nav-controller')
 
 
-
-// Config set and use---------------
-
+// set app to use port in either .ENV or default 
+//Set database name that you want your PostGre to connent to
 app.set("port", process.env.PORT || 3000)
 app.set("database", "generalassembly")
-app.use(express.static('public'))
-app.use(methodOverride('_method'));
-app.use(express.urlencoded({extended:false}));
-app.use(expressEjsLayout)
-app.set('view engine', 'ejs')
+
 
 //---- set up of the Postgres database client
 // pg has a bunch of stuff just need client
@@ -35,7 +25,25 @@ const client = new dbClient({
     database: (app.get("database"))
 })
 
-//connect your database postgres client returns a promise and some results  m
+
+//Configure other requires
+require('dotenv').config()
+const methodOverride = require('method-override')
+const expressEjsLayout = require('express-ejs-layouts')
+const navController = require('./controllers/nav-controller')
+
+
+// Config set and use---------------
+app.use(express.static('public'))
+app.use(methodOverride('_method'));
+app.use(express.urlencoded({extended:false}));
+app.use(expressEjsLayout)
+app.set('view engine', 'ejs')
+
+
+
+//connect your database postgres client returns a promise and some results  $database defined above
+
 client.connect()
 .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
 .then(() => client.query("SELECT * FROM students;"))
