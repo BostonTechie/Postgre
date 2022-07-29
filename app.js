@@ -10,7 +10,8 @@ const app = express()
 // set app to use port in either .ENV or default 
 //Set database name that you want your PostGre to connent to
 app.set("port", process.env.PORT || 3000)
-app.set("database", "generalassembly")
+app.set("database", "hive")
+app.set("host", "34.74.30.194")
 
 
 //---- set up of the Postgres database client
@@ -19,7 +20,7 @@ const dbClient = require('pg').Client
 const client = new dbClient({
     user:"postgres",
     password:"2356",
-    host:"Digital-S-Lumos4322598",
+    host:(app.get("host")),
     //port is optional this is 5432 default
     port: 5432,
     database: (app.get("database"))
@@ -45,14 +46,14 @@ app.set('view engine', 'ejs')
 //connect your database postgres client returns a promise and some results  $database defined above
 // this is an example of dot chaining
 client.connect()
-  .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
+  .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")}, at host ${app.get("host")} 🌟`))
   .then(() => client.query("SELECT * FROM students;"))
   .then((results => console.table(results.rows)))
 
   //insert into your database
   //can onyl be inserted once because id is primary key, also SSN is unique (column one)
   //.then(() => client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["7","insert1","insert2","insert3","insert4","45"]))
-  &
+
   //select ftom an array
   .then(() => client.query("SELECT * FROM students where first_name = $1", ["Andy"]))
   .then((results => console.table(results.rows)))
