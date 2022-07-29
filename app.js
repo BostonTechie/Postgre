@@ -48,12 +48,17 @@ client.connect()
   .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")} 🌟`))
   .then(() => client.query("SELECT * FROM students;"))
   .then((results => console.table(results.rows)))
+
+  //insert into your database
+  //can onyl be inserted once because id is primary key (column one)
+  //.then(() => client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["7","insert1","insert2","insert3","insert4","45"]))
   
+  //select ftom an array
   .then(() => client.query("SELECT * FROM students where first_name = $1", ["Andy"]))
   .then((results => console.table(results.rows)))
   
   .catch(e => console.log("here is your error ", e))
-  .finally(() => client.end())
+.finally(() => client.end())
 
 
 // redirect user to home page ---------------
