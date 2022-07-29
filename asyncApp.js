@@ -27,7 +27,8 @@ async function executeAsync() {
     console.log(`✅ connected to Postgres: 🌟`)
     //cna only insert once unless you chance id and  SSN
     //const inputthis = await client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["122","","","","","4546"])
-    const {rows} = await client.query("SELECT * FROM students;")
+    const {rows} = await client.query("SELECT * FROM hive;")
+    //ff
     console.table(rows)
   }
   
