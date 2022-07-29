@@ -20,7 +20,7 @@
   "main": "app.js",
   "scripts": {
     "test": "node app.js",
-    "async": "async-app.js"
+    "async": "asyncApp.js"
   },
   "keywords": [],
   "author": "",
