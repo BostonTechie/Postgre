@@ -31,16 +31,16 @@ router.get("/:id", async (req, res) => {
 })
 
 // The  post route
-router.post('/', async (req, res) => { 
-  try {
+// router.post('/', async (req, res) => { 
+//   try {
     
-    const allData = await pool.query("SELECT * FROM hiveengine LIMIT 2;")
-    res.json(allData.rows)
+//     const allData = await pool.query("SELECT * FROM hiveengine LIMIT 2;")
+//     res.json(allData.rows)
     
-  } catch (error) {
-    console.log("here is your get error nav-controller: ", error.message)
-  }
+//   } catch (error) {
+//     console.log("here is your get error nav-controller: ", error.message)
+//   }
 
-})
+// })
 
 module.exports = router
