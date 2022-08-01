@@ -7,10 +7,10 @@ const pool = require("../db/connectGCP")
 
 
 // The get all route
-router.get('/', async (req, res) => { 
+router.get("/", async (req, res) => { 
     try {
       
-      const allData = await pool.query("SELECT * FROM crypto LIMIT 2;")
+      const allData = await pool.query("SELECT * FROM hive LIMIT 2;")
       res.json(allData.rows)
       
     } catch (error) {
@@ -19,17 +19,26 @@ router.get('/', async (req, res) => {
 
 })
 
-router.get('/:id', async (req, res) => { 
+router.get("/:id", async (req, res) => { 
   try {
-    const {id} = req.params
-    const allData = await pool.query("SELECT * FROM crypto  WHERE crypto_id = $1 LIMIT 3;")
-    res.json(allData.rows)
+    const { id } = req.params
+    const selectData = await pool.query("SELECT * FROM hive WHERE dbid = $1", [id])
+    res.json(selectData.rows[0])
     
   } catch (error) {
     console.log("here is your get error nav-controller: ", error)
   }
-  finally{
+})
+
+// The  post route
+router.post('/', async (req, res) => { 
+  try {
     
+    const allData = await pool.query("SELECT * FROM hiveengine LIMIT 2;")
+    res.json(allData.rows)
+    
+  } catch (error) {
+    console.log("here is your get error nav-controller: ", error.message)
   }
 
 })

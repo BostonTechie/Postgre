@@ -1,5 +1,5 @@
 CREATE TABLE hive(
-     "Asset" text COLLATE pg_catalog."default",
+    "Asset" text COLLATE pg_catalog."default",
     "From" text COLLATE pg_catalog."default",
     "To" text COLLATE pg_catalog."default",
     "Quantity" real,

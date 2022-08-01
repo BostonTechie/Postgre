@@ -1,4 +1,5 @@
-CREATE TABLE hiveEngine(
+CREATE TABLE hive(
+    dbId SERIAL PRIMARY KEY,
     "Asset Type" text COLLATE pg_catalog."default",
     "Asset" text COLLATE pg_catalog."default",
     "From" text COLLATE pg_catalog."default",
