@@ -1,5 +1,6 @@
 //Dev by Andrew Urquhart 7/29/2022
 //slack/discord - Drewlongshot
+//PERN stack
 
 // set app to use express ejs views
 const express = require('express')
