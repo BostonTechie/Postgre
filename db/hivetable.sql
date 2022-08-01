@@ -1,14 +1,11 @@
-CREATE DATABASE javatable;
-
-CREATE TABLE javatableData(
-    id_java SERIAL PRIMARY KEY,
-    "Asset Type" text COLLATE pg_catalog."default",
-    "Asset" text COLLATE pg_catalog."default",
+CREATE TABLE hive(
+     "Asset" text COLLATE pg_catalog."default",
     "From" text COLLATE pg_catalog."default",
     "To" text COLLATE pg_catalog."default",
     "Quantity" real,
     "Basis Date" date,
     "Proceed Date" date,
+    "Token Price" real,
     "Gross Proceed" real,
     "Cost of Basis" real,
     "Net" real,
@@ -16,8 +13,6 @@ CREATE TABLE javatableData(
     "Duration" text COLLATE pg_catalog."default",
     "Block" integer,
     "Transaction ID" text COLLATE pg_catalog."default",
-    "Note" text COLLATE pg_catalog."default",
-    "Source" text COLLATE pg_catalog."default",
-    "Token Price" real
+    "Note" text COLLATE pg_catalog."default"
 );
 

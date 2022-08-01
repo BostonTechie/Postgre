@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 const pool = require("../db/connectGCP")
 
 
-// The get route
+// The get all route
 router.get('/', async (req, res) => { 
     try {
       
@@ -14,17 +14,15 @@ router.get('/', async (req, res) => {
       res.json(allData.rows)
       
     } catch (error) {
-      console.log("here is your get error nav-controller: ", error)
-    }
-    finally{
-      
+      console.log("here is your get error nav-controller: ", error.message)
     }
 
 })
 
-router.get('/2', async (req, res) => { 
+router.get('/:id', async (req, res) => { 
   try {
-    const allData = await pool.query("SELECT * FROM crypto LIMIT 3;")
+    const {id} = req.params
+    const allData = await pool.query("SELECT * FROM crypto  WHERE crypto_id = $1 LIMIT 3;")
     res.json(allData.rows)
     
   } catch (error) {
