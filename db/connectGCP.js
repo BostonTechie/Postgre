@@ -12,8 +12,9 @@ app.set("password", process.env.PASS)
 
 //---- set up of the Postgres database client
 // pg has a bunch of stuff just need client
-const dbClient = require('pg').Client
-const client = new dbClient({
+const Pool = require('pg').Pool
+
+const pool = new Pool({
     user:"postgres",
     password:process.env.PASS,
     host:(app.get("host")),
@@ -22,13 +23,15 @@ const client = new dbClient({
     database: (app.get("database"))
 })
 
+module.exports = pool
+
 
 //connect your database postgres client returns a promise and some results  $database defined above
 // this is an example of dot chaining
-client.connect()
-  .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")}, at host ${app.get("host")} 🌟`))
-  .then(() => client.query("SELECT * FROM crypto LIMIT 1;"))
-  .then((results => console.table(results.rows)))
+// client.connect()
+//   .then(()=> console.log(`✅ connected to Postgres: ${app.get("database")}, at host ${app.get("host")} 🌟`))
+//   .then(() => client.query("SELECT * FROM crypto LIMIT 1;"))
+//   .then((results => console.table(results.rows)))
 
   //insert into your database
   //can onyl be inserted once because id is primary key, also SSN is unique (column one)
@@ -36,5 +39,5 @@ client.connect()
 
 
   
-  .catch(e => console.log("here is your error ", e))
-.finally(() => client.end(console.log('client disconnected')))
+//   .catch(e => console.log("here is your error ", e))
+// .finally(() => client.end(console.log('client disconnected')))

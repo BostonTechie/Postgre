@@ -5,6 +5,7 @@
 // set app to use express ejs views
 const express = require('express')
 const app = express()
+const cors = require("cors")
 
 
 // set app to use port in either .ENV or default 
@@ -19,11 +20,13 @@ const expressEjsLayout = require('express-ejs-layouts')
 const navController = require('./controllers/nav-controller')
 
 
-// Config set and use---------------
+// middle ware Config set and use---------------
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 app.use(expressEjsLayout)
+app.use(cors())
 app.set('view engine', 'ejs')
 
 

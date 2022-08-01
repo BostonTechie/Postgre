@@ -1,15 +1,12 @@
--- Table: public.Hive
+CREATE DATABASE javatable;
 
--- DROP TABLE IF EXISTS public."Hive";
-
-CREATE TABLE IF NOT EXISTS public."Hive"
-(
+CREATE TABLE javatableData(
+    id_java SERIAL PRIMARY KEY,
     "Asset Type" text COLLATE pg_catalog."default",
     "Asset" text COLLATE pg_catalog."default",
     "From" text COLLATE pg_catalog."default",
     "To" text COLLATE pg_catalog."default",
     "Quantity" real,
-    
     "Basis Date" date,
     "Proceed Date" date,
     "Gross Proceed" real,
@@ -22,9 +19,5 @@ CREATE TABLE IF NOT EXISTS public."Hive"
     "Note" text COLLATE pg_catalog."default",
     "Source" text COLLATE pg_catalog."default",
     "Token Price" real
-)
+);
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public."Hive"
-    OWNER to postgres;
