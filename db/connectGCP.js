@@ -1,9 +1,13 @@
 
 const express = require('express')
 const app = express()
+require('dotenv').config()
+
 //Set database name that you want your PostGre to connent to as well as host
-app.set("database", "hive")
-app.set("host", "34.74.30.194")
+app.set("database", process.env.DATABASE)
+app.set("host", process.env.DBHOST)
+app.set("port", process.env.PORT)
+app.set("password", process.env.PASS)
 
 
 //---- set up of the Postgres database client
@@ -11,10 +15,10 @@ app.set("host", "34.74.30.194")
 const dbClient = require('pg').Client
 const client = new dbClient({
     user:"postgres",
-    password:"2356",
+    password:process.env.PASS,
     host:(app.get("host")),
     //port is optional this is 5432 default
-    port: 5432,
+    port: process.env.PORT,
     database: (app.get("database"))
 })
 

@@ -7,11 +7,12 @@ const app = express()
 
 
 // set app to use port in either .ENV or default 
-app.set("port", process.env.PORT || 3000)
+require('dotenv').config()
+app.set("port", process.env.PORTFRONT || 3000)
 
 
 //Configure other requires
-require('dotenv').config()
+
 const methodOverride = require('method-override')
 const expressEjsLayout = require('express-ejs-layouts')
 const navController = require('./controllers/nav-controller')
@@ -31,5 +32,5 @@ app.use('/',navController)
 
 
 app.listen(app.get("port"), () => {
-  console.log(`✅ PORT: ${app.get("port")} 🌟`)
+  console.log(`✅ PORT: you are now connected to:${app.get("port")} 🌟`)
 });
