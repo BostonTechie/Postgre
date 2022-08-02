@@ -5,17 +5,26 @@
 
 // set app to use express ejs views
 const { Client } = require("pg")
+const express = require('express')
+const app = express()
+require('dotenv').config()
+
+//Set database name that you want your PostGre to connent to as well as host
+app.set("database", process.env.DATABASE)
+app.set("host", process.env.DBHOST)
+app.set("port", process.env.PORT)
+app.set("password", process.env.PASS)
 
 //---- set up of the Postgres database client
 // pg has a bunch of stuff just need client
 
 const client = new Client({
   user: "postgres",
-  password: "2356",
-  host: "Digital-S-Lumos4322598",
+  password: process.env.PASS,
+  host: process.env.DBHOST,
   //port is optional this is 5432 default
-  port: 5432,
-  database: "generalassembly",
+  port: process.env.PORT,
+  database: process.env.DATABASE,
 });
 
 executeAsync()
@@ -27,9 +36,8 @@ async function executeAsync() {
     console.log(`✅ connected to Postgres: 🌟`)
     //cna only insert once unless you chance id and  SSN
     //const inputthis = await client.query("INSERT into students values ($1, $2, $3, $4, $5, $6)", ["122","","","","","4546"])
-    const {rows} = await client.query("SELECT * FROM hive;")
-    //ff
-    console.table(rows)
+    const {rows} = await client.query("SELECT * FROM crypto WHERE dbid = 1;")
+    console.log(rows)
   }
   
   catch (e){

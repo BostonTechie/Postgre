@@ -16,18 +16,15 @@ app.set("port", process.env.PORTBACK || 4000)
 //Configure other requires
 
 const methodOverride = require('method-override')
-const expressEjsLayout = require('express-ejs-layouts')
 const navController = require('./controllers/nav-controller')
 
 
 // middle ware Config set and use---------------
-app.use(express.static('public'))
+
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
-app.use(expressEjsLayout)
 app.use(cors())
-app.set('view engine', 'ejs')
 
 
 // Controllers ---------------

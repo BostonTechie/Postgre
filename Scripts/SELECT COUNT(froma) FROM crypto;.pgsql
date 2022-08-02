@@ -1,0 +1,1 @@
+SELECT COUNT(froma) FROM crypto;

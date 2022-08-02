@@ -10,11 +10,11 @@ const pool = require("../db/connectGCP")
 router.get("/", async (req, res) => { 
     try {
       
-      const allData = await pool.query("SELECT * FROM hive LIMIT 2;")
+      const allData = await pool.query("SELECT * FROM crypto LIMIT 2;")
       res.json(allData.rows)
       
     } catch (error) {
-      console.log("here is your get error nav-controller: ", error.message)
+      console.error("here is your get error nav-controller: ", error.message)
     }
 
 })

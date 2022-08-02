@@ -1,1 +1,0 @@
-SELECT * FROM hive LIMIT 2;
