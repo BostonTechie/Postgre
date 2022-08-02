@@ -10,7 +10,7 @@ const cors = require("cors")
 
 // set app to use port in either .ENV or default 
 require('dotenv').config()
-app.set("port", process.env.PORTFRONT || 3000)
+app.set("port", process.env.PORTBACK || 4000)
 
 
 //Configure other requires
@@ -31,7 +31,7 @@ app.set('view engine', 'ejs')
 
 
 // Controllers ---------------
-// the "home" page in this section is the index
+// the "home" page in this section is the indexed
 app.use('/',navController)
 
 

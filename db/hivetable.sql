@@ -1,4 +1,5 @@
 CREATE TABLE hive(
+    dbId SERIAL PRIMARY KEY
     "Asset" text COLLATE pg_catalog."default",
     "From" text COLLATE pg_catalog."default",
     "To" text COLLATE pg_catalog."default",
