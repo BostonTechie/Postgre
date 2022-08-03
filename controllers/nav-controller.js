@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => { 
   try {
     const { id } = req.params
-    const selectData = await pool.query("SELECT * FROM hive WHERE dbid = $1", [id])
+    const selectData = await pool.query("SELECT * FROM crypto WHERE dbid = $1", [id])
     res.json(selectData.rows[0])
     
   } catch (error) {

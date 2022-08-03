@@ -17,10 +17,10 @@ const Pool = require('pg').Pool
 const pool = new Pool({
     user:"postgres",
     password:process.env.PASS,
-    host:(app.get("host")),
+    host:process.env.DBHOST,
     //port is optional this is 5432 default
     port: process.env.PORT,
-    database: (app.get("database"))
+    database: process.env.DATABASE
 })
 
 module.exports = pool
