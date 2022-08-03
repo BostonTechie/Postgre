@@ -1,14 +1,4 @@
 
-const express = require('express')
-const app = express()
-require('dotenv').config()
-
-//Set database name that you want your PostGre to connent to as well as host
-app.set("database", process.env.DATABASE)
-app.set("host", process.env.DBHOST)
-app.set("port", process.env.PORT)
-app.set("password", process.env.PASS)
-
 
 //---- set up of the Postgres database client
 // pg has a bunch of stuff just need client
@@ -20,7 +10,9 @@ const pool = new Pool({
     host:process.env.DBHOST,
     //port is optional this is 5432 default
     port: process.env.PORT,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000
 })
 
 module.exports = pool
